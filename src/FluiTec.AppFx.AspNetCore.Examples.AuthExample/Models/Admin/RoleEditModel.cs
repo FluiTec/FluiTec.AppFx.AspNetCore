@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using DbLocalizationProvider.Abstractions;
+using FluiTec.DbLocalizationProvider.Abstractions;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Admin

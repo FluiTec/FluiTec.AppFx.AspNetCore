@@ -1,5 +1,5 @@
 ﻿using System;
-using DbLocalizationProvider.Abstractions;
+using FluiTec.DbLocalizationProvider.Abstractions;
 using FluiTec.AppFx.Localization;
 using Microsoft.Extensions.Localization;
 

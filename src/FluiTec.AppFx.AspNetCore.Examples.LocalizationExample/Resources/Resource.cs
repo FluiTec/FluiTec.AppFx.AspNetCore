@@ -1,5 +1,5 @@
-﻿using DbLocalizationProvider.Abstractions;
-using DbLocalizationProvider.Abstractions.Refactoring;
+﻿using FluiTec.DbLocalizationProvider.Abstractions;
+using FluiTec.DbLocalizationProvider.Abstractions.Refactoring;
 
 namespace FluiTec.AppFx.AspNetCore.Examples.LocalizationExample.Resources
 {

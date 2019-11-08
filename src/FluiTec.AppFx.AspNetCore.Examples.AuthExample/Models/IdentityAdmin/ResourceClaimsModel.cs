@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DbLocalizationProvider.Abstractions;
+using FluiTec.DbLocalizationProvider.Abstractions;
 
 namespace FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin
 {

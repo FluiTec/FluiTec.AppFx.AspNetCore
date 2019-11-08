@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DbLocalizationProvider.Abstractions;
+using FluiTec.DbLocalizationProvider.Abstractions;
 using FluiTec.AppFx.Identity.Models.AccountViewModels;
 
 namespace FluiTec.AppFx.AspNetCore.Examples.LocalizationExample.Models
