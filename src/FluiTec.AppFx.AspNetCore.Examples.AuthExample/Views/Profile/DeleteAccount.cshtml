@@ -1,0 +1,29 @@
+﻿<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Account</h2>
+    </header>
+    <!--Content-->
+    <div class="container">
+        <section>
+            <h4>Delete account</h4>
+            <p>
+                Are you sure you want to delete your account?
+            </p>
+            <form asp-controller="Profile" asp-action="DeleteAccountNow" method="post">
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Yes, i am"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

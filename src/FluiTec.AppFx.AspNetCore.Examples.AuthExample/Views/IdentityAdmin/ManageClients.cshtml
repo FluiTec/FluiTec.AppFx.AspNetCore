@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FluiTec.AppFx.IdentityServer.Entities.ClientEntity>
+@using FluiTec.AppFx.AspNetCore
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Client management</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Manage clients</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.ClientsUpdate)).Succeeded)
+                    {
+                        <th>#</th>
+                    }
+                    </tr>
+                </thead>
+                @foreach (var client in Model)
+                {
+                <tr>
+                    <td>
+                        @client.Name
+                    </td>
+                    @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.ClientsUpdate)).Succeeded)
+                    {
+                    <td>
+                        <a asp-controller="IdentityAdmin" asp-action="ManageClient" asp-route-clientid="@client.Id">Edit</a>
+                    </td>
+                    }
+                </tr>
+                }
+            </table>
+            <h4>Actions</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="Admin" asp-action="Index">Admin</a>
+                        </li>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.ClientsCreate)).Succeeded)
+                    {
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="AddClient">Add client</a>
+                        </li>
+                    }
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

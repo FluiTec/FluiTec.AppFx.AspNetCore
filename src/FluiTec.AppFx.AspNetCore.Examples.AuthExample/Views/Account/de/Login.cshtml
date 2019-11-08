@@ -1,0 +1,65 @@
+﻿@using FluiTec.AppFx.Identity.Entities
+@using Microsoft.AspNetCore.Identity
+@model FluiTec.AppFx.Identity.Models.AccountViewModels.LoginViewModel
+@inject SignInManager<IdentityUserEntity> SignInManager
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Login</h2>
+    </header>
+    <div class="container">
+        <h4>Lokale Anmeldung</h4>
+        <hr/>
+        <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+            <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <input asp-for="Email" placeholder="E-Mail" data-rule-required="true" data-msg-required="E-Mail ist ein Pflichtfeld"/>
+                </div>
+            </div>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <input asp-for="Password" placeholder="Passwort" data-rule-required="true" data-msg-required="Passwort ist ein Pflichtfeld"/>
+                </div>
+            </div>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <input asp-for="RememberMe"/>
+                    <label asp-for="RememberMe"></label>
+                </div>
+            </div>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <input type="submit" value="Anmelden"/>
+                        </li>
+                        <li>
+                            <input type="reset" value="Zurücksetzen"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Registrieren</a>
+                        </li>
+                        <li>
+                            <a asp-action="ForgotPassword">Passwort vergessen</a>
+                        </li>
+                        <li>
+                            <a asp-action="ConfirmEmailAgain">E-Mail erneut bestätigen</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+        @Html.Partial("_ExternalLogin")
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

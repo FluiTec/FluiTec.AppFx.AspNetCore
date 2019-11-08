@@ -1,0 +1,25 @@
+﻿@using FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.UpdateModel
+@if (Model != null && Model.Updated)
+{
+    if (Model.SuccessfullyUpdated)
+    {
+        <div class="edit-feedback-success">
+            <p>
+                <img src="~/images/edit_success.png" alt="edit success"/>
+                Die Änderungen wurden gespeichert.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="row uniform">
+            <div class="edit-feedback-fault">
+                <p>
+                    <img src="~/images/edit_fault.png" alt="edit fault" />
+                    Die Änderungen wurden nicht gespeichert.
+                </p>
+            </div>
+        </div>
+    }
+}

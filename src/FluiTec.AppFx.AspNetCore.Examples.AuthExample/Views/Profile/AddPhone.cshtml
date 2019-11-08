@@ -1,0 +1,36 @@
+﻿@using FluiTec.AppFx.Identity.Models.ManageViewModels
+@model FluiTec.AppFx.Identity.Models.ManageViewModels.AddPhoneViewModel
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Phone</h2>
+    </header>
+    <!--Content-->
+    <div class="container">
+        <section>
+            <h4>Change phone number</h4>
+            <hr/>
+            <form asp-controller="Profile" asp-action="AddPhone" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Phone" placeholder="Phone" data-rule-required="true" data-msg-required="Phone is required"/>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Submit"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

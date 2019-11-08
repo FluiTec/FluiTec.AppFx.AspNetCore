@@ -1,0 +1,77 @@
+﻿@using FluiTec.AppFx.AspNetCore
+@using FluiTec.AppFx.AspNetCore.Configuration
+@using Microsoft.AspNetCore.Authorization
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin.ClientClaimsModel
+@inject IdentityServerClaimOptions IdentityServerOptions
+@inject IViewLocalizer Localizer
+@inject IAuthorizationService AuthorizationService
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Klienten-Eigenschaftsverwaltung</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Eigenschaften verwalten</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+            <input asp-for="ClientId" hidden />
+            <br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Typ</th>
+                        <th>Wert</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                @foreach (var claim in Model.ClaimEntries)
+                {
+                    <tr>
+                        @{
+                            var defaultClaimType = IdentityServerOptions.DefaultClaimTypes.SingleOrDefault(c => c.Name == claim.Type);
+                            if (defaultClaimType != null)
+                            {
+                                <td>@Localizer.GetString(defaultClaimType.DisplayName)</td>
+                            }
+                            else
+                            {
+                                <td>@claim.Type</td>
+                            }
+                        }
+                        <td>@claim.Value</td>
+                        <td>
+                            @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.ClientClaimsUpdate)).Succeeded)
+                            {
+                                <a asp-controller="IdentityAdmin" asp-action="EditClientClaim" asp-route-clientid="@Model.ClientId" asp-route-claimtype="@claim.Type">Bearbeiten</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+            <h4>Aktionen</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageClients">Klientenverwaltung</a>
+                        </li>
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageClient" asp-route-clientid="@Model.ClientId">Klient verwalten</a>
+                        </li>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.ClientClaimsCreate)).Succeeded)
+                        {
+                            <li>
+                                <a asp-controller="IdentityAdmin" asp-action="AddClientClaim" asp-route-clientid="@Model.ClientId">Eigenschaft hinzufügen</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

@@ -1,0 +1,48 @@
+﻿@using FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Admin
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Admin.RoleDeleteModel
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Role management</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Delete role</h4>
+            <hr />
+            <p>Are you sure you want to delete the following role?</p>
+            <form asp-controller="Admin" asp-action="DeleteRole" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <input type="hidden" name="Id" id="Id" value="@Model?.Id" readonly />
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" placeholder="Name" readonly/>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Sure, delete it" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <h4>Actions</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="Admin" asp-action="ManageRoles">Role management</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

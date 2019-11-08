@@ -1,0 +1,42 @@
+﻿@using FluiTec.AppFx.Identity.Models.AccountViewModels
+@model FluiTec.AppFx.Identity.Models.AccountViewModels.ConfirmEmailAgainViewModel
+
+<cache expires-after="@TimeSpan.FromHours(12)">
+    <section id="maincontent" class="wrapper content-wrapper">
+        <header>
+            <h2>Account bestätigen</h2>
+        </header>
+        <div class="container">
+            <section>
+                <form asp-controller="Account" asp-action="ConfirmEmailAgain" method="post">
+                    <h4>Account bestätigen</h4>
+                    <hr/>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="row uniform">
+                        <div class="col-lg-6">
+                            <input asp-for="Email" placeholder="E-Mail" data-rule-required="true" data-msg-required="E-Mail ist ein Pflichtfeld"/>
+                        </div>
+                    </div>
+                    <div class="row uniform">
+                        <div class="col-lg-6">
+                            <recaptcha/>
+                        </div>
+                    </div>
+                    <div class="row uniform">
+                        <div class="col-lg-6">
+                            <ul class="actions">
+                                <li>
+                                    <input type="submit" value="Absenden"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </section>
+</cache>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

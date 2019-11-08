@@ -1,0 +1,91 @@
+﻿@using FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Identity
+@using Microsoft.Extensions.Localization
+@model ConsentModel
+@inject IStringLocalizer<ConsentOptions> Localizer
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Weitergeleitete Anmeldung</h2>
+    </header>
+    <div class="container">
+        <h4>Zustimmung erteilen</h4>
+        <hr />
+        <form asp-controller="Identity" asp-action="Consent" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+            <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+            <input type="hidden" asp-for="ReturnUrl" />
+            @if (Model.ClientLogoUrl != null)
+            {
+            <div class="client-logo">
+                <img src="@Model.ClientLogoUrl" alt="client-logo">
+            </div>
+            }
+            <h3>
+                <small>Die Anwendung "@Model.ClientName" bittet um Ihre Erlaubnis um auf Ihre persönlichen Informationen zuzugreifen.</small>
+            </h3>
+            <br />
+            @if (Model.IdentityScopes.Any())
+            {
+                <h4>Persönliche Informationen</h4>
+                <hr />
+                foreach (var scope in Model.IdentityScopes)
+                {   
+                    <div class="row uniform">
+                        <div class="col-lg-6">
+                            @Html.Partial("_ScopeListItem", scope)
+                        </div>
+                    </div>
+                }
+            }
+            <br />
+            @if (Model.ResourceScopes.Any())
+            {
+            <h4>Anwendungsbezogene Informationen</h4>
+            <hr />
+                foreach (var scope in Model.ResourceScopes)
+                {   
+                    <div class="row uniform">
+                        <div class="col-lg-6">
+                            @Html.Partial("_ScopeListItem", scope)
+                        </div>
+                    </div>
+                }
+            }
+            <br />
+            @if (Model.AllowRememberConsent)
+            {
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <input asp-for="RememberConsent" checked />
+                    <label asp-for="RememberConsent"></label>
+                </div>
+            </div>
+            }
+            <!--old-->
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <input type="submit" name="Button" value="@Localizer.GetString(o => o.AllowAccessText)" autofocus />
+                        </li>
+                        <li>
+                            <input type="reset" name="Button" value="@Localizer.GetString(o => o.DenyAccessText)" />
+                        </li>
+                    @if (Model.ClientUrl != null)
+                    {
+                        <li>
+                            <a class="pull-right btn btn-default" target="_blank" href="@Model.ClientUrl">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                                <strong>@Model.ClientName</strong>
+                            </a>
+                        </li>
+                    }
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

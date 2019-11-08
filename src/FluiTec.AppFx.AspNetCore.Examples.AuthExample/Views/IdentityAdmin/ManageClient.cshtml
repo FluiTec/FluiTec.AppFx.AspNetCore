@@ -1,0 +1,108 @@
+﻿@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin.ClientEditModel
+@using FluiTec.AppFx.AspNetCore
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Role management</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Edit client</h4>
+            <hr />
+            @Html.Partial("_ModelUpdateResult", Model)
+            <form asp-controller="IdentityAdmin" asp-action="ManageClient" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <input type="hidden" name="Id" id="Id" value="@Model?.Id" readonly />
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" placeholder="Name" data-rule-required="true" data-msg-required="Name is required" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <label asp-for="ClientId"></label>
+                        <input type="text" name="ClientId" Id="ClientId" value="@Model?.ClientId" readonly />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <label asp-for="ClientSecret"></label>
+                        <input asp-for="ClientSecret" readonly />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="RedirectUri" placeholder="Redirect uri" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="PostLogoutUri" placeholder="Postlogout uri" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="AllowOfflineAccess" />
+                        <label asp-for="AllowOfflineAccess"></label>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <select asp-for="GrantTypes" class="custom-select">
+                            <option value="password">Password</option>
+                            <option value="hybrid">Hybrid</option>
+                            <option value="client_credentials">Client credentials</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Edit" />
+                            </li>
+                            <li>
+                                <input type="reset" value="Reset" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.ScopesAccess)).Succeeded)
+            {
+                @Html.Partial("_ManageClientScopes", Model)
+            }
+            <h4>Actions</h4>
+            <hr />
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageClients">Client management</a>
+                        </li>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.ClientClaimsAccess)).Succeeded)
+                        {
+                            <li>
+                                <a asp-controller="IdentityAdmin" asp-action="ManageClientClaims" asp-route-clientid="@Model?.Id">Manage claims</a>
+                            </li>
+                        }
+                        @if (Model != null && (await AuthorizationService.AuthorizeAsync(User, PolicyNames.ClientsDelete)).Succeeded)
+                        {
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="DeleteClient" asp-route-clientid="@Model.Id">Delete client</a>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

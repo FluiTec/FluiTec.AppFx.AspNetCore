@@ -1,0 +1,28 @@
+﻿@using FluiTec.AppFx.AspNetCore.Configuration
+@model FluiTec.AppFx.AspNetCore.Configuration.AdminOptions
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Account confirmation</h2>
+    </header>
+    @if (Model.ConfirmationRecipient == MailAddressConfirmationRecipient.Admin)
+    {
+        <div class="container">
+            <section>
+                <h3>Account confirmation</h3>
+                <p>In order to login, first an administrator must confirm your account. You will receive according notice shortly.</p>
+                <p>Thanks for your patience.</p>
+            </section>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <section>
+                <h3>Account confirmation</h3>
+                <p>In order to login and use this application, you will have to confirm your mail-address. Please look into your inbox (including the spam folder).</p>
+                <p>Thanks for your patience.</p>
+            </section>
+        </div>
+    }
+</section>

@@ -1,0 +1,76 @@
+﻿@using FluiTec.AppFx.AspNetCore.Configuration
+@inject OperatorOptions Operator
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Impressum</h2>
+    </header>
+    <!--Content-->
+    <div class="container">
+        <section>
+            <h3>Adresse</h3>
+            <p>
+                @Operator.Enterprise<br/>
+                @Operator.Street<br/>
+                @Operator.ZipCode @Operator.City
+            </p>
+            <h3>Kontakt</h3>
+            <table>
+                <tbody>
+                <tr>
+                    <th scope="row" style="width: 70px;">Telefon:</th>
+                    <td>@Operator.Phone</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 70px;">Fax:</th>
+                    <td>@Operator.Fax</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 70px;">E-Mail:</th>
+                    <td>
+                        <a href="@Operator.MailAddress">@Operator.MailAddressDisplay</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 70px;">Homepage:</th>
+                    <td>
+                        <a href="@Operator.Homepage">@Operator.HomepageDisplay</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br/>
+            <h3>Vertretungsberechtigte</h3>
+            <p>@Operator.Representatives</p>
+
+            <h3>Rechtliches</h3>
+            <table>
+                <tbody>
+                <tr>
+                    <th scope="row" style="width: 100px;">Handelsregister:</th>
+                    <td>@Operator.CommercialRegister</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 100px;">UST-IdNr.:</th>
+                    <td>@Operator.TaxIdNumber</td>
+                </tr>
+                <tr>
+                    <th scope="row" style="width: 100px;">Steuer-Nr.:</th>
+                    <td>@Operator.TaxNumber</td>
+                </tr>
+                </tbody>
+            </table>
+
+            @if (Operator.HasComplementary)
+            {
+                <br/>
+                <h3>Geschäftsführende Komplementärin</h3>
+                <p>
+                    @Operator.ComplementaryName<br/>
+                    Vertretungsberechtigte: @Operator.ComplementaryRepresentatives<br/>
+                    Handelsregister: @Operator.ComplementaryCommercialRegister
+                </p>
+            }
+        </section>
+    </div>
+</section>

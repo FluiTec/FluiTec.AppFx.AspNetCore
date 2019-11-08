@@ -1,0 +1,52 @@
+﻿@using FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Admin
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Admin.UserLockoutModel
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Benutzerverwaltung</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Benutzer aussperren</h4>
+            <hr />
+            <form asp-controller="Admin" asp-action="LockoutUser" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" placeholder="Name" readonly />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <label asp-for="LockoutTime"></label>
+                        <input asp-for="LockoutTime" placeholder="Name" data-rule-required="true" data-msg-required="Aussperrzeit ist ein Pflichtfeld" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Aussperren" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <h4>Aktionen</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="Admin" asp-action="ManageUsers">Benutzerverwaltung</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

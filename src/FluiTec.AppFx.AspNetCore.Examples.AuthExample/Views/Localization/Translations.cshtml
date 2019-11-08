@@ -1,0 +1,75 @@
+﻿@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.PageableModel<FluiTec.AppFx.Localization.Entities.TranslationEntity>
+@using FluiTec.AppFx.AspNetCore
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Localization</h2>
+    </header>
+    <!--Content-->
+    <div class="container">
+        <section>
+            <h3>Translations</h3>
+            @Html.Partial("_PageNavigation", Model)
+            @if (Model != null && Model.Items.Any())
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Language</th>
+                            <th>Translation</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    @foreach (var translation in Model.Items)
+                    {
+                        <tr>
+                            @if (translation.Language == null)
+                            {
+                                <td>default</td>
+                            }
+                            else
+                            {
+                                <td>@translation.Language</td>
+                            }
+                            <td>@translation.Value</td>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.LocalizationUpdate)).Succeeded)
+                        {
+                            <td><a asp-action="EditTranslation" asp-route-id="@translation.Id">Edit</a></td>
+                        }
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <p>No translations available.</p>
+            }
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="Admin" asp-action="Index">Admin</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Localization" asp-action="Index">Localization</a>
+                        </li>
+                        @if (Model != null && Model.Items != null && Model.Items.Any())
+                        {
+                            <li>
+                                <a asp-controller="Localization" asp-action="EditResource" asp-route-resourceid="@Model.Items.First().ResourceId">Edit resource</a>
+                            </li>
+                        }
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.LocalizationCreate)).Succeeded)
+                        {
+                            <li>
+                                <a asp-controller="Localization" asp-action="AddTranslation" asp-route-resourceKey="@Context.Request.Query["resourceKey"]">Add translation</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

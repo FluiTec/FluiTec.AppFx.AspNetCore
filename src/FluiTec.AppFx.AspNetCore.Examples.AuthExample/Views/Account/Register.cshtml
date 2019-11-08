@@ -1,0 +1,68 @@
+﻿@using FluiTec.AppFx.Identity.Entities
+@using FluiTec.AppFx.Identity.Models.AccountViewModels
+@using Microsoft.AspNetCore.Identity
+@model RegisterViewModel
+@inject SignInManager<IdentityUserEntity> SignInManager
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Register</h2>
+    </header>
+    <!--Content-->
+    <div class="container">
+        <section>
+            <h4>Local registration</h4>
+            <hr/>
+            <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData[" ReturnUrl"]" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Email" placeholder="Mail" data-rule-required="true" data-msg-required="Mail is required"/>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Name" placeholder="Name" data-rule-required="true" data-msg-required="Name is required"/>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Phone" placeholder="Phone" data-rule-required="true" data-msg-required="Phone is required"/>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Password" placeholder="Password" data-rule-required="true" data-msg-required="Password is required"/>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="ConfirmPassword" placeholder="Password confirmation" data-rule-required="true" data-msg-required="Password confirmation is required"/>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <recaptcha/>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Register"/>
+                            </li>
+                            <li>
+                                <input type="reset" value="Reset"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </section>
+        @Html.Partial("_ExternalLogin")
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

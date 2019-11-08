@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model AnnotationModel
+<form asp-controller="Home" asp-action="AnnotationDummy" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <label asp-for="UserName"></label>
+    <input type="text" id="UserName" name="UserName" value="@Model?.UserName"/>
+    <br/>
+
+    <label asp-for="Email"></label>
+    <input type="text" id="Email" , name="Email" value="@Model?.Email"/>
+    <br/>
+
+    <input type="submit" value="Post"/>
+</form>

@@ -1,0 +1,83 @@
+﻿@using FluiTec.AppFx.Identity.Models.ManageViewModels
+@model FluiTec.AppFx.Identity.Models.ManageViewModels.IndexViewModel
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Profile</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Change settings</h4>
+            <hr/>
+            @if (!string.IsNullOrWhiteSpace(Model.StatusMessage))
+            {
+                <h5>State</h5>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <p>@Model.StatusMessage</p>
+                    </div>
+                </div>
+            }
+            <h5>Account</h5>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="Profile" asp-action="DeleteAccount">Delete account</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <h5>Password</h5>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    @if (Model.HasPassword)
+                    {
+                        <ul class="actions">
+                            <li>
+                                <a asp-controller="Profile" asp-action="ChangePassword">Change password</a>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="actions">
+                            <li>
+                                <a asp-controller="Profile" asp-action="SetPassword">Set password</a>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </div>
+            <h5>External logins</h5>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <p>@(Model.Logins.Count > 0 ? string.Format("Linked accounts: {0}", Model.Logins.Count) : "No external logins set up")</p>
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="Profile" asp-action="ManageLogins">Manage external logins</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <h5>Phone</h5>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    @if (!string.IsNullOrWhiteSpace(Model.PhoneNumber))
+                    {
+                        <p>@Model.PhoneNumber</p>
+                    }
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="Profile" asp-action="AddPhone">Change phone number</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

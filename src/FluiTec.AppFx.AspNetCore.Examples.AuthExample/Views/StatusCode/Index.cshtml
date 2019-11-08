@@ -1,0 +1,15 @@
+﻿@model int
+@{
+    <section id="maincontent" class="wrapper content-wrapper">
+        <header>
+            <h2>Error - HTTP @Model</h2>
+        </header>
+        <div class="container">
+            <section id="content">
+                <section>
+                    @Html.Partial("_Code_" + Model)
+                </section>
+            </section>
+        </div>
+    </section>
+}

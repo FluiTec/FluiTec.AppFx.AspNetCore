@@ -1,0 +1,41 @@
+﻿@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Localization.TranslationDeleteModel
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Localization</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Delete translation</h4>
+            <hr />
+            <p>Are you sure you want to delete the translation?</p>
+            <form asp-controller="Localization" asp-action="DeleteTranslation" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <input type="hidden" name="Id" id="Id" value="@Model?.Id" readonly />
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Sure, delete it" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <h4>Actions</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="Localization" asp-action="Index">All resources</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

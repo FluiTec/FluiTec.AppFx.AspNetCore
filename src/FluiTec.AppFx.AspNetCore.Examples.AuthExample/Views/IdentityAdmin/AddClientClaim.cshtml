@@ -1,0 +1,68 @@
+﻿@using FluiTec.AppFx.AspNetCore.Configuration
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin.ClientClaimAddModel
+@inject IdentityServerClaimOptions IdentityServerOptions
+@inject IViewLocalizer Localizer
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Client claims management</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Add claim</h4>
+            <hr />
+            @Html.Partial("_ModelUpdateResult", Model)
+            <form asp-controller="IdentityAdmin" asp-action="AddClientClaim" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <input asp-for="ClientId" value="@Model.ClientId" hidden />
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <select class="custom-select mr-sm-2" name="Type" Id="Type">
+                            @foreach (var claimType in IdentityServerOptions.DefaultClaimTypes)
+                            {
+                                <option value="@claimType.Name">@Localizer.GetString(claimType.DisplayName)</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Value" placeholder="Value" data-rule-required="true" data-msg-required="Value is required" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Add" />
+                            </li>
+                            <li>
+                                <input type="reset" value="Reset" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <h4>Actions</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageClients">Client management</a>
+                        </li>
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageClient" asp-route-clientid="@Model.ClientId">Manage client</a>
+                        </li>
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageClientClaims" asp-route-clientid="@Model.ClientId">Manage client claims</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

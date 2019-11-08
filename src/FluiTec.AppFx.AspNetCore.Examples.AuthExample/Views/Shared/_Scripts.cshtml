@@ -1,0 +1,31 @@
+﻿@inject FluiTec.AppFx.AspNetCore.Configuration.ApplicationOptions AppOptions
+
+<script src="@AppOptions.ApplicationResourceRoot/js/jquery.min.js"></script>
+<script src="@AppOptions.ApplicationResourceRoot/js/popper.min.js"></script>
+<script src="@AppOptions.ApplicationResourceRoot/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="@AppOptions.ApplicationResourceRoot/css/cookieconsent.min.css" />
+<script src="@AppOptions.ApplicationResourceRoot/js/cookieconsent.min.js"></script>
+<script>
+    window.addEventListener("load",
+        function () {
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#ffffff",
+                        "text": "#000000"
+                    },
+                    "button": {
+                        "background": "#DF545A",
+                        "text": "#ffffff"
+                    }
+                },
+                "content": {
+                    "message":
+                        "Hinweis: Wir setzen Cookies ein. Durch die weitere Nutzung dieser Website erklären Sie sich mit dem Einsatz von Cookies einverstanden.",
+                    "dismiss": "OK!",
+                    "link": "Weitere Informationen",
+                    "href": "/Contact/Privacy"
+                }
+            });
+        });
+</script>

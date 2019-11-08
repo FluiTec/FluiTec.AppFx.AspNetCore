@@ -1,0 +1,57 @@
+﻿@inherits RazorLight.TemplatePage<FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Mail.UserConfirmMailModel>
+<html>
+@{ await IncludeAsync("/Shared/_Style.cshtml", Model); }
+<body>
+<p></p>
+<table width="700" align="center" cellspacing="0" cellpadding="15" style="background: #fff; border: 1px #808080 solid;">
+    <tr>
+        <td>
+            <p style="color: #e0555a; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 20px; text-align: center;">@Model.ApplicationName</p>
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #646464; border-bottom: 5px #646464 solid; border-top: 5px #646464 solid; padding: 10px;">
+            <p style="color: #FFFFFF; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold;" align="center">@Model.Header</p>
+            <p style="color: #FFFFFF; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold;" align="center">
+                <i>Bitte bestätigen Sie Ihren Account</i>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #435058; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
+                Hallo,<br/>
+                Sie haben soeben einen Account auf @Model.ApplicationName erstellt.<br/>
+                Um sich anmelden zu können - müssen Sie zuerst Ihren Account bestätigen.<br/>
+                Bitte öffnen Sie dazu folgenden Link: <a href="@Model.ValidationUrl">Account bestätigen</a>.
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #435058; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
+                Die E-Mail-Adresse, die bestätigt werden muss: <a href="mailto:@Model.Email">@Model.Email</a>.
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #435058; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
+                Sie erhalten diese Nachricht, da versucht wurde einen Account auf @Model.ApplicationName zu erstellen.<br/>
+                Falls Sie das nicht selbst waren - möchten wir Sie bitten diese Nachricht zu ignorieren.
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #435058; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
+                Vielen Dank. Ihr Team von @Model.ApplicationName.
+            </p>
+        </td>
+    </tr>
+</table>
+<p style="color: #435058; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; text-align: center;">
+    &copy; @Model.ApplicationName<br/><a href="@Model.ApplicationUrl" target="_blank">@Model.ApplicationUrlDisplay</a>
+</p>
+</body>
+</html>

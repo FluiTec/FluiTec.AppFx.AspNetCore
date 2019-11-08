@@ -1,0 +1,29 @@
+﻿@using System.Globalization
+@using FluiTec.AppFx.Identity.Entities
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUserEntity> SignInManager
+
+@{
+    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+    if (loginProviders.Count > 0)
+    {
+        <cache vary-by="@CultureInfo.CurrentUICulture.Name" expires-after="@TimeSpan.FromHours(12)">
+            <section>
+                <h4>Use another service to login</h4>
+                <hr/>
+                <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                    <div class="row uniform" style="margin-left: 0">
+                        <ul class="actions">
+                            @foreach (var provider in loginProviders)
+                            {
+                                <li>
+                                    <input type="submit" style="padding-left: 40px" class="btn btn-default @provider.Name-btn" name="provider" value="@provider.Name" title="Login with @provider.DisplayName"/>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </form>
+            </section>
+        </cache>
+    }
+}

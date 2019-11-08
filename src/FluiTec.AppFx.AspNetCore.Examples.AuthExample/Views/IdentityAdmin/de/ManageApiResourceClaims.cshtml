@@ -1,0 +1,75 @@
+﻿@using FluiTec.AppFx.AspNetCore
+@using FluiTec.AppFx.AspNetCore.Configuration
+@using Microsoft.AspNetCore.Authorization
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin.ResourceClaimsModel
+@inject IdentityServerClaimOptions IdentityServerOptions
+@inject IViewLocalizer Localizer
+@inject IAuthorizationService AuthorizationService
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>API-Ressourcen Eigenschaftsverwaltung</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Eigenschaften verwalten</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+            <input asp-for="ResourceId" hidden />
+            <br />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Typ</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                @foreach (var claim in Model.ClaimEntries)
+                {
+                    <tr>
+                        @{
+                            var defaultClaimType = IdentityServerOptions.DefaultClaimTypes.SingleOrDefault(c => c.Name == claim.Type);
+                            if (defaultClaimType != null)
+                            {
+                                <td>@Localizer.GetString(defaultClaimType.DisplayName)</td>
+                            }
+                            else
+                            {
+                                <td>@claim.Type</td>
+                            }
+                        }
+                        <td>
+                            @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.ApiResourceClaimsUpdate)).Succeeded)
+                            {
+                                <a asp-controller="IdentityAdmin" asp-action="EditApiResourceClaim" asp-route-resourceid="@Model.ResourceId" asp-route-claimtype="@claim.Type">Bearbeiten</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+            <h4>Aktionen</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageApiResources">API-Ressourcenverwaltung</a>
+                        </li>
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageApiResource" asp-route-resourceid="@Model.ResourceId">Ressource verwalten</a>
+                        </li>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.ApiResourceClaimsCreate)).Succeeded)
+                        {
+                            <li>
+                                <a asp-controller="IdentityAdmin" asp-action="AddApiResourceClaim" asp-route-resourceid="@Model.ResourceId">Eigenschaft hinzufügen</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

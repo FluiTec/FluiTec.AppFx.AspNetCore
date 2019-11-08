@@ -1,0 +1,73 @@
+﻿@using FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin.ClientAddModel
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Client management</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Add client</h4>
+            <hr />
+            <form asp-controller="IdentityAdmin" asp-action="AddClient" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Name" placeholder="Name" data-rule-required="true" data-msg-required="Name is required" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="RedirectUri" placeholder="Redirect uri" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="PostLogoutUri" placeholder="Postlogout uri" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="AllowOfflineAccess" />
+                        <label asp-for="AllowOfflineAccess"></label>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <select asp-for="GrantTypes" class="custom-select">
+                            <option value="password">Passwort</option>
+                            <option value="hybrid">Hybrid</option>
+                            <option value="client_credentials">Client credentials</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Add" />
+                            </li>
+                            <li>
+                                <input type="reset" value="Reset" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <h4>Actions</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageClients">Client management</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

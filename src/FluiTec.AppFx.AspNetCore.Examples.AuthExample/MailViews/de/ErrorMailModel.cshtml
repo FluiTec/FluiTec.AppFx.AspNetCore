@@ -1,0 +1,39 @@
+﻿@inherits RazorLight.TemplatePage<FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Mail.ErrorMailModel>
+<html>
+@{ await IncludeAsync("/Shared/_Style.cshtml", Model); }
+<body>
+<p></p>
+<table width="700" align="center" cellspacing="0" cellpadding="15" style="background: #fff; border: 1px #808080 solid;">
+    <tr>
+        <td>
+            <p style="color: #e0555a; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 20px; text-align: center;">@Model.ApplicationName</p>
+        </td>
+    </tr>
+    <tr>
+        <td style="background-color: #646464; border-bottom: 5px #646464 solid; border-top: 5px #646464 solid; padding: 10px;">
+            <p style="color: #FFFFFF; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold;" align="center">@Model.Header</p>
+            <p style="color: #FFFFFF; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold;" align="center">
+                <i>Unbehandelter Fehler</i>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #435058; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
+                Ein unbehandelter Fehler ist aufgetreten unter: @Raw(Model.ErrorRoute).
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="color: #435058; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
+                @Raw(Model.ExceptionText)
+            </p>
+        </td>
+    </tr>
+</table>
+<p style="color: #435058; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; text-align: center;">
+    &copy; @Model.ApplicationName<br/><a href="@Model.ApplicationUrl" target="_blank">@Model.ApplicationUrlDisplay</a>
+</p>
+</body>
+</html>

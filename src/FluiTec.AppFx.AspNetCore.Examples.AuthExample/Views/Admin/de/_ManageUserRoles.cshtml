@@ -1,0 +1,40 @@
+﻿@using FluiTec.AppFx.AspNetCore
+@using Microsoft.AspNetCore.Authorization
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Admin.UserEditModel
+@inject IAuthorizationService AuthorizationService
+
+@if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.RolesAccess)).Succeeded)
+{
+    <section>
+        @if (Model.UserRoles.Any())
+        {
+            <h4>Rollen entfernen</h4>
+            <form asp-controller="Admin" asp-action="RemoveUserRole" method="post" class="form-horizontal">
+                <div>
+                    <p>
+                        @foreach (var role in Model.UserRoles)
+                        {
+                            <input name="UserId" value="@Model.Id" type="hidden" readonly=""/>
+                            <input type="submit" class="btn btn-default" name="Name" value="@role.Name" title="@string.Format("add {0}", role.Name)"/>
+                        }
+                    </p>
+                </div>
+            </form>
+        }
+        @if (Model.Roles.Any())
+        {
+            <h4>Rollen hinzufügen</h4>
+            <form asp-controller="Admin" asp-action="AddUserRole" method="post" class="form-horizontal">
+                <div>
+                    <p>
+                        @foreach (var role in Model.Roles)
+                        {
+                            <input name="UserId" value="@Model.Id" type="hidden" readonly=""/>
+                            <input type="submit" class="btn btn-default" name="Name" value="@role.Name" title="@string.Format("add {0}", role.Name)"/>
+                        }
+                    </p>
+                </div>
+            </form>
+        }
+    </section>
+}

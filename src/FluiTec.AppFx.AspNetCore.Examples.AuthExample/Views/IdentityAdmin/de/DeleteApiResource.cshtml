@@ -1,0 +1,44 @@
+﻿@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin.ResourceDeleteModel
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>API-Ressourcenverwaltung</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>API-Ressource entfernen</h4>
+            <hr />
+            <form asp-controller="IdentityAdmin" asp-action="DeleteApiResource" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <input asp-for="Id" value="@Model.Id" hidden />
+                <p>Sind Sie sicher, dass Sie diese Ressource löschen möchten?</p>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Ja, bin ich" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <h4>Aktionen</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageApiResources">API-Ressourcenverwaltung</a>
+                        </li>
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageApiResource" asp-route-resourceid="@Model.Id">Ressource verwalten</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

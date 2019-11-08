@@ -1,0 +1,78 @@
+﻿@using Microsoft.Extensions.Localization
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Admin.RoleEditModel
+@inject IViewLocalizer Localizer
+
+<h4>Manage rights</h4>
+<hr />
+<div id="rights-accordion">
+    @for (var x = 0; x < Model.Rights.Count; x++)
+    {
+        var showAttribute = x == 0 ? "show" : string.Empty;
+        var expandedText = x == 0 ? "True" : "False";
+
+        <div class="card-header" id="@Model.Rights[x].Name-header">
+            <h5 class="mb-0">
+                <a class="btn btn-light" data-toggle="collapse" data-target="#@Model.Rights[x].Name-Rights" role="button" aria-expanded="@expandedText" aria-controls="collapsibleRights">@Localizer.GetString(Model.Rights[x].DisplayName)</a>
+            </h5>
+        </div>
+        <div class="collapse row right-details @showAttribute" id="@Model.Rights[x].Name-Rights" data-parent="#rights-accordion">
+            <div class="col-lg-6">
+                @for (var y = 0; y < Model.Rights[x].Rights.Count; y++)
+                {
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend input-width-fixed">
+                            @switch (Model.Rights[x].Rights[y].ActivityType)
+                            {
+                                case "Access":
+                                    <span class="input-group-text input-width-fixed text-info" id="rights-addon">Access</span>
+                                    break;
+                                case "Create":
+                                    <span class="input-group-text input-width-fixed text-primary" id="rights-addon">Create</span>
+                                    break;
+                                case "Read":
+                                    <span class="input-group-text input-width-fixed text-success" id="rights-addon">Read</span>
+                                    break;
+                                case "Update":
+                                    <span class="input-group-text input-width-fixed text-warning" id="rights-addon">Edit</span>
+                                    break;
+                                case "Delete":
+                                    <span class="input-group-text input-width-fixed text-danger" id="rights-addon">Delete</span>
+                                    break;
+                                default:
+                                    <span class="input-group-text input-width-fixed text-primary" id="rights-addon">@Model.Rights[x].Rights[y].ActivityType</span>
+                                    break;
+                            }
+
+                        </div>
+                        <select class="custom-select mr-sm-2" name="@Model.Rights[x].Rights[y].ActivityId" aria-describedby="rights-addon">
+                            @if (Model.Rights[x].Rights[y].Value == 0)
+                            {
+                                <option value="0" selected>undefined</option>
+                            }
+                            else
+                            {
+                                <option value="0">undefined</option>
+                            }
+                            @if (Model.Rights[x].Rights[y].Value == 1)
+                            {
+                                <option value="1" selected>deny</option>
+                            }
+                            else
+                            {
+                                <option value="1">deny</option>
+                            }
+                            @if (Model.Rights[x].Rights[y].Value == 2)
+                            {
+                                <option value="2" selected>allow</option>
+                            }
+                            else
+                            {
+                                <option value="2">allow</option>
+                            }
+                        </select>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,18 @@
+﻿@using System.Globalization
+@model DateTimeOffset
+
+<cache vary-by="@CultureInfo.CurrentUICulture.Name" expires-after="@TimeSpan.FromHours(12)">
+    <section id="maincontent" class="wrapper content-wrapper">
+        <header>
+            <h2>Account is locked out</h2>
+        </header>
+        <div class="container">
+            <section>
+                <div class="row uniform">
+                    <p>Your account is current locket out. Please contact us by mail if you have questions about this.</p>
+                    <p>Your account will be locked till: @Model.DateTime.ToLocalTime() . </p>
+                </div>
+            </section>
+        </div>
+    </section>
+</cache>

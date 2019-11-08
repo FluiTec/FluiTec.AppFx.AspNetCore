@@ -1,0 +1,70 @@
+﻿@using FluiTec.AppFx.AspNetCore.Configuration
+@inject OperatorOptions Operator
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Datenschutzerklärung</h2>
+    </header>
+    <!--Content-->
+    <div class="container">
+        <section>
+            <h3>Datenschutz</h3>
+            <p>Die Nutzung unserer Seite ist ohne eine Angabe von personenbezogenen Daten möglich. Für die Nutzung einzelner Services unserer Seite können sich hierfür abweichende Regelungen ergeben, die in diesem Falle nachstehend gesondert erläutert werden. Ihre personenbezogenen Daten (z.B. Name, Anschrift, E-Mail, Telefonnummer, u.ä.) werden von uns nur gemäß den Bestimmungen des deutschen Datenschutzrechts verarbeitet. Daten sind dann personenbezogen, wenn sie eindeutig einer bestimmten natürlichen Person zugeordnet werden können. Die rechtlichen Grundlagen des Datenschutzes finden Sie im Bundesdatenschutzgesetz (BDSG) und dem Telemediengesetz (TMG). Nachstehende Regelungen informieren Sie insoweit über die Art, den Umfang und Zweck der Erhebung, die Nutzung und die Verarbeitung von personenbezogenen Daten durch den Anbieter</p>
+            <p>
+                <strong>
+                    @Operator.Enterprise <br/>
+                    @Operator.Street <br/>
+                    @Operator.ZipCode @Operator.City <br/>
+                    Telefon: @Operator.Phone <br/>
+                    E-Mail: <a href="@Operator.PrivacyMailAddress">@Operator.PrivacyMailAddressDisplay</a>
+                </strong>
+            </p>
+            <p>Wir weisen darauf hin, dass die internetbasierte Datenübertragung Sicherheitslücken aufweist, ein lückenloser Schutz vor Zugriffen durch Dritte somit unmöglich ist.</p>
+
+            <h3>Cookies</h3>
+            <p>
+                Wir verwenden auf unserer Seite sog. Cookies zum Wiedererkennen mehrfacher Nutzung unseres Angebots, durch denselben Nutzer/Internetanschlussinhaber. Cookies sind kleine Textdateien, die Ihr Internet-Browser auf Ihrem Rechner ablegt und speichert. Sie dienen dazu, unseren Internetauftritt und unsere Angebote zu optimieren. Es handelt sich dabei zumeist um sog. "Session-Cookies", die nach dem Ende Ihres Besuches wieder gelöscht werden.<br>
+                Teilweise geben diese Cookies jedoch Informationen ab, um Sie automatisch wieder zu erkennen. Diese Wiedererkennung erfolgt aufgrund der in den Cookies gespeicherten IP-Adresse. Die so erlangten Informationen dienen dazu, unsere Angebote zu optimieren und Ihnen einen leichteren Zugang auf unsere Seite zu ermöglichen.<br>
+                Sie können die Installation der Cookies durch eine entsprechende Einstellung Ihres Browsers verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen unserer Website vollumfänglich nutzen können.
+            </p>
+
+            <h3>Serverdaten</h3>
+            <p>
+                Aus technischen Gründen werden u.a. folgende Daten, die Ihr Internet-Browser an uns bzw. an unseren Webspace-Provider übermittelt, erfasst (sogenannte Serverlogfiles): <br>
+                <br>
+                - Browsertyp und -version <br>
+                - verwendetes Betriebssystem <br>
+                - Webseite, von der aus Sie uns besuchen (Referrer URL) <br>
+                - Webseite, die Sie besuchen <br>
+                - Datum und Uhrzeit Ihres Zugriffs <br>
+                - Ihre Internet Protokoll (IP)-Adresse. <br>
+                <br>
+                Diese anonymen Daten werden getrennt von Ihren eventuell angegebenen personenbezogenen Daten gespeichert und lassen so keine Rückschlüsse auf eine bestimmte Person zu. Sie werden zu statistischen Zwecken ausgewertet, um unseren Internetauftritt und unsere Angebote optimieren zu können.
+            </p>
+
+            <h3>Registrierungsfunktion</h3>
+            <p>Wir bieten Ihnen auf unserer Seite die Möglichkeit, sich dort zu registrieren. Die im Zuge dieser Registrierung eingegebenen Daten, die aus der Eingabemaske des Registrierungsformular ersichtlich sind </p>
+            <ul>
+                <li>E-Mail Adresse</li>
+                <li>Name</li>
+                <li>Telefonnummer</li>
+                <li>Passwort</li>
+            </ul>
+            <p>werden ausschließlich für die Verwendung unseres Angebots erhoben und gespeichert. Mit Ihrer Registrierung auf unserer Seite werden wir zudem Ihre IP-Adresse und das Datum sowie die Uhrzeit Ihrer Registrierung speichern. Dies dient in dem Fall, dass ein Dritter Ihre Daten missbraucht und sich mit diesen Daten ohne Ihr Wissen auf unserer Seite registriert, als Absicherung unsererseits.&nbsp; Eine Weitergabe an Dritte erfolgt nicht. Ein Abgleich der so erhobenen Daten mit Daten, die möglicherweise durch andere Komponenten unserer Seite erhoben werden, erfolgt ebenfalls nicht.</p>
+
+            <h3>Einsatz von reCAPTCHA</h3>
+            <p>Um Eingabeformulare auf unserer Seite zu schützen, setzen wir den Dienst „reCAPTCHA“ der Firma Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043 USA, nachfolgend „Google“, ein. Durch den Einsatz dieses Dienstes kann unterschieden werden, ob die entsprechende Eingabe menschlicher Herkunft ist oder durch automatisierte maschinelle Verarbeitung missbräuchlich erfolgt.</p>
+            <p>Nach unserer Kenntnis werden die Referrer-URL, die IP-Adresse, das Verhalten der Webseitenbesucher, Informationen über Betriebssystem, Browser und Verweildauer, Cookies, Darstellungsanweisungen und Skripte, das Eingabeverhalten des Nutzers sowie Mausbewegungen im Bereich der „reCAPTCHA“-Checkbox an „Google“ übertragen.</p>
+            <p>Google verwendet die so erlangten Informationen unter anderem dazu, Bücher und andere Druckerzeugnisse zu digitalisieren sowie Dienste wie Google Street View und Google Maps zu optimieren (bspw. Hausnummern- und Straßennamenerkennung).</p>
+            <p>Die im Rahmen von „reCAPTCHA“ übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt, außer Sie sind zum Zeitpunkt der Nutzung des „reCAPTCHA“-Plug-ins bei Ihrem Google-Account angemeldet. Wenn Sie diese Übermittlung und Speicherung von Daten über Sie und Ihr Verhalten auf unserer Webseite durch „Google“ unterbinden wollen, müssen Sie sich bei „Google“ ausloggen und zwar bevor Sie unsere Seite besuchen bzw. das reCAPTCHA Plug-in benutzen.</p>
+            <p>Die Nutzung des Dienstes „reCAPTCHA“ erlangten Informationen erfolgt gemäß den&nbsp;Google-Nutzungsbedingungen:&nbsp;</p>
+            <p><a href="https://www.google.com/intl/de/policies/privacy/" target="_blank" rel="nofollow">https://www.google.com/intl/de/policies/privacy/</a>.</p>
+
+            <h3>Auskunft/Widerruf/Löschung</h3>
+            <p>Sie können sich aufgrund des Bundesdatenschutzgesetzes bei Fragen zur Erhebung, Verarbeitung oder Nutzung Ihrer personenbezogenen Daten und deren Berichtigung, Sperrung, Löschung oder einem Widerruf einer erteilten Einwilligung unentgeltlich an uns wenden. Wir weisen darauf hin, dass Ihnen ein Recht auf Berichtigung falscher Daten oder Löschung personenbezogener Daten zusteht, sollte diesem Anspruch keine gesetzliche Aufbewahrungspflicht entgegenstehen.</p>
+            <p>
+                <a target="_blank" href="https://www.ratgeberrecht.eu/leistungen/muster-datenschutzerklaerung.html">Muster-Datenschutzerklärung</a> der <a target="_blank" href="https://www.ratgeberrecht.eu/">Anwaltskanzlei Weiß &amp; Partner</a>
+            </p>
+        </section>
+    </div>
+</section>

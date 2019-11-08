@@ -1,0 +1,21 @@
+﻿@using FluiTec.AppFx.AspNetCore.Examples.LocalizationExample.Resources
+@using FluiTec.AppFx.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@{
+    ViewData["Title"] = "Home Page";
+}
+@inject IViewLocalizer Localizer
+<h2>Controller-Localization</h2>
+<p>
+    NormalProperty: @ViewData["NormalProperty"] <br/>
+    StaticProperty: @ViewData["StaticProperty"] <br/>
+    RefactoredProperty: @ViewData["RefactoredProperty"]
+</p>
+<h2>View-Localization</h2>
+<p>
+    <!--Only static properties are available like that-->
+    StaticProperty: @Localizer.GetString(() => Resource.StaticProperty) <br/>
+</p>
+<p>
+    <a asp-controller="Home" asp-action="AnnotationDummy">DataAnnotations-Example</a>
+</p>

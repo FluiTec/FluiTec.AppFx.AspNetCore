@@ -1,0 +1,32 @@
+﻿@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Identity.ScopeModel
+@inject IViewLocalizer Localizer
+
+@if (Model.Checked)
+{
+    if (Model.Required)
+    {
+        <input id="scopes_@Model.Name" name="ScopesConsented" type="checkbox" value="@Model.Name" checked disabled/>
+    }
+    else
+    {
+        <input id="scopes_@Model.Name" name="ScopesConsented" type="checkbox" value="@Model.Name" checked />
+    }
+}
+else
+{
+    <input id="scopes_@Model.Name" name="ScopesConsented" value="@Model.Name" type="checkbox" />
+}
+
+    <label for="scopes_@Model.Name">@Localizer.GetString(Model.DisplayName)</label>
+@if (Model.Required)
+{
+    <p>(Must be confirmed)</p>
+}
+@if (Model.Description != null)
+{
+    <label for="scopes_@Model.Name">@Localizer.GetString(Model.Description)</label>
+}
+@if (Model.Required)
+{
+    <input type="hidden" name="ScopesConsented" value="@Model.Name" />
+}

@@ -1,0 +1,40 @@
+﻿@using FluiTec.AppFx.AspNetCore
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin.ClientEditModel
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.RolesAccess)).Succeeded)
+{
+<section>
+    @if (Model.ClientScopes.Any())
+        {
+    <h4>Aufgabenbereiche entfernen</h4>
+    <form asp-controller="IdentityAdmin" asp-action="RemoveClientScope" method="post" class="form-horizontal">
+        <div>
+            <p>
+                @foreach (var scope in Model.ClientScopes)
+                {
+                <input name="Id" value="@Model.Id" type="hidden" readonly="" />
+                <input type="submit" class="btn btn-default" name="Name" value="@scope.Name" title="@string.Format("{0} entfernen", scope.DisplayName)" />
+                }
+            </p>
+        </div>
+    </form>
+        }
+    @if (Model.Scopes.Any())
+        {
+    <h4>Aufgabenbereiche hinzufügen</h4>
+    <form asp-controller="IdentityAdmin" asp-action="AddClientScope" method="post" class="form-horizontal">
+        <div>
+            <p>
+                @foreach (var scope in Model.Scopes)
+                {
+                <input name="Id" value="@Model.Id" type="hidden" readonly="" />
+                <input type="submit" class="btn btn-default" name="Name" value="@scope.Name" title="@string.Format("{0} hinzufügen", scope.DisplayName)" />
+                }
+            </p>
+        </div>
+    </form>
+        }
+</section>
+}

@@ -1,0 +1,63 @@
+﻿@using FluiTec.AppFx.AspNetCore.Configuration
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin.ResourceClaimAddModel
+@inject IdentityServerClaimOptions IdentityServerOptions
+@inject IViewLocalizer Localizer
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>API-Ressourcen Eigenschaftsverwaltung</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Eigenschaft hinzufügen</h4>
+            <hr />
+            @Html.Partial("_ModelUpdateResult", Model)
+            <form asp-controller="IdentityAdmin" asp-action="AddApiResourceClaim" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <input asp-for="ResourceId" value="@Model.ResourceId" hidden />
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <select class="custom-select mr-sm-2" name="Type" Id="Type">
+                            @foreach (var claimType in IdentityServerOptions.DefaultClaimTypes)
+                            {
+                                <option value="@claimType.Name">@Localizer.GetString(claimType.DisplayName)</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Hinzufügen" />
+                            </li>
+                            <li>
+                                <input type="reset" value="Zurücksetzen" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <h4>Aktionen</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageApiResources">API-Ressourcenverwaltung</a>
+                        </li>
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageApiResource" asp-route-resourceid="@Model.ResourceId">Ressource verwalten</a>
+                        </li>
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageApiResourceClaims" asp-route-resourceid="@Model.ResourceId">Eigenschaften verwalten</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

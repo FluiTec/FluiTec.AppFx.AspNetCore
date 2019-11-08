@@ -1,0 +1,56 @@
+﻿@using FluiTec.AppFx.Identity.Models.ManageViewModels
+@model FluiTec.AppFx.Identity.Models.ManageViewModels.ManageLoginsViewModel
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Externe Logins</h2>
+    </header>
+    <!--Content-->
+    <div class="container">
+        <section>
+            @if (Model.CurrentLogins.Count > 0 && ViewData.ContainsKey("ShowRemoveButton") && bool.Parse(ViewData["ShowRemoveButton"].ToString()))
+            {
+                <h4>Verbundene Logins</h4>
+                <table class="table">
+                    @foreach (var loginInfo in Model.CurrentLogins)
+                    {
+                        <tr>
+                            <td>@loginInfo.LoginProvider</td>
+                            <td>
+                                <form asp-controller="Profile" asp-action="RemoveLogin" method="post" class="form-horizontal">
+                                    <div id="socialLoginList">
+                                        <p>
+                                            <input asp-for="@loginInfo.LoginProvider" name="LoginProvider" type="hidden"/>
+                                            <input asp-for="@loginInfo.ProviderKey" name="ProviderKey" type="hidden"/>
+                                            <input type="submit" style="padding-left: 40px" class="btn btn-default @loginInfo.LoginProvider-btn" name="provider" value="@string.Format("{0} entfernen", loginInfo.ProviderDisplayName)"/>
+                                        </p>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <hr/>
+            }
+            @if (Model.OtherLogins.Count > 0)
+            {
+                <h4>Verfügbare Logins</h4>
+                <hr/>
+                <form asp-controller="Profile" asp-action="LinkLogin" method="post" class="form-horizontal">
+                    <div id="socialLoginList">
+                        <p>
+                            @foreach (var provider in Model.OtherLogins)
+                            {
+                                <input type="submit" style="padding-left: 40px" class="btn btn-default @provider.Name-btn" name="provider" value="@provider.Name" title="@string.Format("{0} hinzufügen", provider.DisplayName)"/>
+                            }
+                        </p>
+                    </div>
+                </form>
+            }
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

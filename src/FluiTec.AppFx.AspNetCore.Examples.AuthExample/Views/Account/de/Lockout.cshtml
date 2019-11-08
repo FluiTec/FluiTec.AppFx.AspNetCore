@@ -1,0 +1,18 @@
+﻿@using System.Globalization
+@model DateTimeOffset
+
+<cache vary-by="@CultureInfo.CurrentUICulture.Name" expires-after="@TimeSpan.FromHours(12)">
+    <section id="maincontent" class="wrapper content-wrapper">
+        <header>
+            <h2>Account ist gesperrt</h2>
+        </header>
+        <div class="container">
+            <section>
+                <div class="row uniform">
+                    <p>Dieser Account ist derzeit gesperrt. Bitte kontaktieren Sie uns per Mail, wenn Sie hierzu Rückfragen haben.</p>
+                    <p>Der Account ist gesperrt bis: @Model.DateTime.ToLocalTime() . </p>
+                </div>
+            </section>
+        </div>
+    </section>
+</cache>

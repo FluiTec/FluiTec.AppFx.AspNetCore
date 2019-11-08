@@ -1,0 +1,99 @@
+﻿@using FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Admin
+@using FluiTec.AppFx.AspNetCore
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.Admin.UserEditModel
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>User management</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Edit user</h4>
+            <hr />
+            @Html.Partial("_ModelUpdateResult", Model)
+            <form asp-controller="Admin" asp-action="ManageUser" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <input type="hidden" name="Id" id="Id" value="@Model?.Id" readonly />
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Email" placeholder="Mail" data-rule-required="true" data-msg-required="Mail is required" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Name" placeholder="Name" data-rule-required="true" data-msg-required="Name is required" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Phone" placeholder="Phone" data-rule-required="true" data-msg-required="Phone is required" />
+                    </div>
+                </div>
+                @if (Model?.LockoutTime != null)
+                {
+                    <div class="row uniform">
+                        <div class="col-lg-6">
+                            <label asp-for="LockoutTime"></label>
+                            <input asp-for="LockoutTime" readonly />
+                        </div>
+                    </div>
+                }
+                @if (Model != null && !Model.Confirmed)
+                {
+                    <div class="row uniform">
+                        <div class="col-lg-6">
+                            <a asp-controller="Admin" asp-action="ConfirmUser" asp-route-userid="@Model.Id">Confirm account now</a>
+                        </div>
+                    </div>
+                }
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Change" />
+                            </li>
+                            <li>
+                                <input type="reset" value="Reset" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.RolesAccess)).Succeeded)
+        {
+            @Html.Partial("_ManageUserRoles", Model)
+        }
+            <h4>Actions</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.ClaimsAccess)).Succeeded)
+                        {
+                            <li>
+                                <a asp-controller="Admin" asp-action="ManageUserClaims" asp-route-userid="@Model?.Id">Manage claims</a>
+                            </li>
+                        }
+                        <li>
+                            <a asp-controller="Admin" asp-action="LockoutUser" asp-route-userid="@Model?.Id">Lock out</a>
+                        </li>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.UsersDelete)).Succeeded)
+                        {
+                            <li>
+                                <a asp-controller="Admin" asp-action="DeleteUser" asp-route-userid="@Model?.Id">Delete</a>
+                            </li>
+                        }
+                        <li>
+                            <a asp-controller="Admin" asp-action="ManageUsers">User management</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

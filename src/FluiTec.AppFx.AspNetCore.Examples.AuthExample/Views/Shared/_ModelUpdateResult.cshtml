@@ -1,0 +1,26 @@
+﻿@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.UpdateModel
+@inject FluiTec.AppFx.AspNetCore.Configuration.ApplicationOptions AppOptions
+
+@if (Model != null && Model.Updated)
+{
+    if (Model.SuccessfullyUpdated)
+    {
+        <div class="edit-feedback-success">
+            <p>
+                <img src="@AppOptions.ApplicationResourceRoot/images/edit_success.png" alt="edit success" />
+                Your changes were applied.
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="row uniform">
+            <div class="edit-feedback-fault">
+                <p>
+                    <img src="@AppOptions.ApplicationResourceRoot/images/edit_fault.png" alt="edit fault" />
+                    Your changes were not applied.
+                </p>
+            </div>
+        </div>
+    }
+}

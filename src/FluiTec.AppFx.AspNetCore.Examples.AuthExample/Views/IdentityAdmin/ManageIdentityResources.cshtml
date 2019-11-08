@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FluiTec.AppFx.IdentityServer.Entities.IdentityResourceEntity>
+@using FluiTec.AppFx.AspNetCore
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@inject IViewLocalizer Localizer
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Identity resources management</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Manage Identity resources</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.IdentityResourcesUpdate)).Succeeded)
+                        {
+                            <th>#</th>
+                        }
+                    </tr>
+                </thead>
+                @foreach (var resource in Model)
+                {
+                    <tr>
+                        <td>
+                            @Localizer.GetString(resource.DisplayName)
+                        </td>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.IdentityResourcesUpdate)).Succeeded)
+                        {
+                            <td>
+                                <a asp-controller="IdentityAdmin" asp-action="ManageIdentityResource" asp-route-resourceid="@resource.Id">Edit</a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+            <h4>Actions</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="Admin" asp-action="Index">Admin</a>
+                        </li>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.IdentityResourcesCreate)).Succeeded)
+                        {
+                            <li>
+                                <a asp-controller="IdentityAdmin" asp-action="AddIdentityResource">Add resource</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

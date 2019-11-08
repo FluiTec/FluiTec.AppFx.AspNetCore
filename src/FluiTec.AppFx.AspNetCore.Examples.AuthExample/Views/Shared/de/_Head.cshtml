@@ -1,0 +1,39 @@
+﻿@using FluiTec.AppFx.AspNetCore.Models
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<ApplicationResource> Localizer
+@inject FluiTec.AppFx.AspNetCore.Configuration.ApplicationOptions AppOptions
+
+<cache expires-after="@TimeSpan.FromHours(value: 12)">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" />
+    <meta name="author" content="Achim Schnell" />
+    <meta name="description" content="authentication-sample" />
+    @if (string.IsNullOrWhiteSpace(ViewBag.Title))
+    {
+        <title>Auth-Beispiel</title>
+    }
+    else
+    {
+        <title>@ViewBag.Title</title>
+    }
+    <!--CSS Templates-->
+    <environment names="Development">
+        <link rel="stylesheet" href="@AppOptions.ApplicationResourceRoot/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="@AppOptions.ApplicationResourceRoot/css/modern-business.css" />
+        <link rel="stylesheet" href="@AppOptions.ApplicationResourceRoot/css/custom.css" />
+        <link rel="stylesheet" href="@AppOptions.ApplicationResourceRoot/css/font-awesome.min.css" />
+    </environment>
+    <environment names="Stating,Production">
+        <link rel="stylesheet" href="@AppOptions.ApplicationResourceRoot/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="@AppOptions.ApplicationResourceRoot/css/modern-business.min.css" />
+        <link rel="stylesheet" href="@AppOptions.ApplicationResourceRoot/css/custom.min.css" />
+        <link rel="stylesheet" href="@AppOptions.ApplicationResourceRoot/css/font-awesome.min.css" />
+    </environment>
+    <!--Icons-->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="@AppOptions.ApplicationResourceRoot/icons/favicon_32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="@AppOptions.ApplicationResourceRoot/icons/favicon_96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="@AppOptions.ApplicationResourceRoot/icons/apple-touch-icon.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="@AppOptions.ApplicationResourceRoot/icons/mstile-144x144.png">
+</cache>

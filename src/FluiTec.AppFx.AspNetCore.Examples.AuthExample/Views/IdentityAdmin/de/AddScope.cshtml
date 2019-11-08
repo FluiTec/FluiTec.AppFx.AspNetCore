@@ -1,0 +1,76 @@
+﻿@using FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin
+@model FluiTec.AppFx.AspNetCore.Examples.AuthExample.Models.IdentityAdmin.ScopeAddModel
+
+<section id="maincontent" class="wrapper content-wrapper">
+    <header>
+        <h2>Aufgabenbereichsverwaltung</h2>
+    </header>
+    <div class="container">
+        <section>
+            <h4>Aufgabenbereich hinzufügen</h4>
+            <hr />
+            <form asp-controller="IdentityAdmin" asp-action="AddScope" method="post">
+                <div asp-validation-summary="All" class="text-danger" data-vlmsg-summary="true"></div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Name" placeholder="Name" data-rule-required="true" data-msg-required="Name ist ein Pflichtfeld" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="DisplayName" placeholder="Anzeigename" data-rule-required="true" data-msg-required="Anezeigename ist ein Pflichtfeld" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Description" placeholder="Beschreibung" data-rule-required="true" data-msg-required="Beschreibung ist ein Pflichtfeld" />
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Required" />
+                        <label asp-for="Required"></label>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="Emphasize" />
+                        <label asp-for="Emphasize"></label>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <input asp-for="ShowInDiscoveryDocument" />
+                        <label asp-for="ShowInDiscoveryDocument"></label>
+                    </div>
+                </div>
+                <div class="row uniform">
+                    <div class="col-lg-6">
+                        <ul class="actions">
+                            <li>
+                                <input type="submit" value="Hinzufügen" />
+                            </li>
+                            <li>
+                                <input type="reset" value="Zurücksetzen" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <h4>Aktionen</h4>
+            <div class="row uniform">
+                <div class="col-lg-6">
+                    <ul class="actions">
+                        <li>
+                            <a asp-controller="IdentityAdmin" asp-action="ManageScopes">Aufgabenbereichsverwaltung</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
