@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluiTec.DbLocalizationProvider.Abstractions" Version="1.0.6" />
-    <PackageReference Include="FluiTec.AppFx.Localization.LiteDb" Version="1.0.6" />
+    <PackageReference Include="FluiTec.DbLocalizationProvider.Abstractions" Version="1.0.7" />
+    <PackageReference Include="FluiTec.AppFx.Localization.LiteDb" Version="1.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.All" />
   </ItemGroup>
 
