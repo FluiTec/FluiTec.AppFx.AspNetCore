@@ -14,8 +14,8 @@
 
   <ItemGroup>
     <PackageReference Include="FluiTec.AppFx.Authentication.Amazon" Version="1.0.5" />
-    <PackageReference Include="FluiTec.AppFx.Authorization.Activity" Version="1.0.8" />
-    <PackageReference Include="FluiTec.AppFx.Authorization.Activity.Dynamic" Version="1.0.8" />
+    <PackageReference Include="FluiTec.AppFx.Authorization.Activity" Version="1.0.10" />
+    <PackageReference Include="FluiTec.AppFx.Authorization.Activity.Dynamic" Version="1.0.10" />
     <PackageReference Include="FluiTec.AppFx.DataProtection.Dynamic" Version="1.0.4" />
     <PackageReference Include="FluiTec.AppFx.Identity.Dynamic" Version="1.0.4" />
     <PackageReference Include="FluiTec.AppFx.IdentityServer.Dynamic" Version="1.0.6" />
