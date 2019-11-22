@@ -28,7 +28,6 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>	An IServiceCollection extension method that configure MVC. </summary>
         /// <param name="services">						The services to act on. </param>
         /// <param name="configuration">				The configuration. </param>
-        /// <param name="configureJson">				The configure JSON. </param>
         /// <param name="configureLocalization">		The configure localization. </param>
         /// <param name="configureDataLocalization">	The configure data localization. </param>
         /// <param name="configureMvc">					The configure MVC. </param>
@@ -41,7 +40,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             _cultureOptions = configuration.GetConfiguration<CultureOptions>();
 
-            var mvc = services.AddMvc();
+            var mvc = services.AddMvc(options => options.EnableEndpointRouting = false);
             mvc.AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();

@@ -14,17 +14,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluiTec.AppFx.Authentication.Amazon" Version="1.0.6" />
+    <PackageReference Include="FluiTec.AppFx.Authentication.Amazon" Version="1.0.7" />
     <PackageReference Include="FluiTec.AppFx.Authorization.Activity.Dynamic" Version="1.0.13" />
     <PackageReference Include="FluiTec.AppFx.DataProtection.Dynamic" Version="1.0.5" />
-    <PackageReference Include="FluiTec.AppFx.Identity.Dynamic" Version="1.0.5" />
-    <PackageReference Include="FluiTec.AppFx.IdentityServer.Dynamic" Version="1.0.8" />
+    <PackageReference Include="FluiTec.AppFx.Identity.Dynamic" Version="1.0.6" />
+    <PackageReference Include="FluiTec.AppFx.IdentityServer.Dynamic" Version="1.0.9" />
     <PackageReference Include="FluiTec.AppFx.Localization" Version="1.0.8" />
     <PackageReference Include="FluiTec.AppFx.Localization.Dynamic" Version="1.0.8" />
     <PackageReference Include="FluiTec.AppFx.Mail" Version="1.0.6" />
     <PackageReference Include="FluiTec.AppFx.Options" Version="1.0.11" />
-    <PackageReference Include="IdentityServer4" Version="2.5.3" />
-    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.5.3" />
+    <PackageReference Include="IdentityServer4" Version="3.0.2" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="3.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />

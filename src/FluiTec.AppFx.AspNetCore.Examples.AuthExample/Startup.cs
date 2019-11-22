@@ -52,9 +52,6 @@ namespace FluiTec.AppFx.AspNetCore.Examples.AuthExample
         /// <param name="services">         The services. </param>
         public void ConfigureServices(IServiceCollection services)
         {
-            var service = services.BuildServiceProvider();
-            var loggerFactory = service.GetRequiredService<ILoggerFactory>();
-
             services.ConfigureApplication(Configuration);
             services.ConfigureOperator(Configuration);
             services.ConfigureErrorHandling(Configuration);

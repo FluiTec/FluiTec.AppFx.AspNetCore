@@ -7,27 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="MailViews\de\AccountConfirmedModel.cshtml" />
-    <Content Remove="MailViews\de\AdminConfirmMailModel.cshtml" />
-    <Content Remove="MailViews\de\ErrorMailModel.cshtml" />
-    <Content Remove="MailViews\de\RecoverPasswordMailModel.cshtml" />
-    <Content Remove="MailViews\de\UserConfirmMailModel.cshtml" />
-    <Content Remove="MailViews\en\AccountConfirmedModel.cshtml" />
-    <Content Remove="MailViews\en\AdminConfirmMailModel.cshtml" />
-    <Content Remove="MailViews\en\ErrorMailModel.cshtml" />
-    <Content Remove="MailViews\en\RecoverPasswordMailModel.cshtml" />
-    <Content Remove="MailViews\en\UserConfirmMailModel.cshtml" />
-    <Content Remove="MailViews\Shared\_Style.cshtml" />
+    <Content Remove="wwwroot\MailViews\de\AccountConfirmedModel.cshtml" />
+    <Content Remove="wwwroot\MailViews\de\AdminConfirmMailModel.cshtml" />
+    <Content Remove="wwwroot\MailViews\de\ErrorMailModel.cshtml" />
+    <Content Remove="wwwroot\MailViews\de\RecoverPasswordMailModel.cshtml" />
+    <Content Remove="wwwroot\MailViews\de\UserConfirmMailModel.cshtml" />
+    <Content Remove="wwwroot\MailViews\en\AccountConfirmedModel.cshtml" />
+    <Content Remove="wwwroot\MailViews\en\AdminConfirmMailModel.cshtml" />
+    <Content Remove="wwwroot\MailViews\en\ErrorMailModel.cshtml" />
+    <Content Remove="wwwroot\MailViews\en\RecoverPasswordMailModel.cshtml" />
+    <Content Remove="wwwroot\MailViews\en\UserConfirmMailModel.cshtml" />
+    <Content Remove="wwwroot\MailViews\Shared\_Style.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="MailViews\de\AccountConfirmedModel.cshtml" />
-    <None Include="MailViews\en\AccountConfirmedModel.cshtml" />
-    <None Include="MailViews\en\AdminConfirmMailModel.cshtml" />
-    <None Include="MailViews\en\ErrorMailModel.cshtml" />
-    <None Include="MailViews\en\RecoverPasswordMailModel.cshtml" />
-    <None Include="MailViews\en\UserConfirmMailModel.cshtml" />
-    <None Include="MailViews\Shared\_Style.cshtml" />
+    <None Include="wwwroot\MailViews\de\AccountConfirmedModel.cshtml" />
+    <None Include="wwwroot\MailViews\en\AccountConfirmedModel.cshtml" />
+    <None Include="wwwroot\MailViews\en\AdminConfirmMailModel.cshtml" />
+    <None Include="wwwroot\MailViews\en\ErrorMailModel.cshtml" />
+    <None Include="wwwroot\MailViews\en\RecoverPasswordMailModel.cshtml" />
+    <None Include="wwwroot\MailViews\en\UserConfirmMailModel.cshtml" />
+    <None Include="wwwroot\MailViews\Shared\_Style.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,10 +41,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="MailViews\de\AdminConfirmMailModel.cshtml" />
-    <None Include="MailViews\de\ErrorMailModel.cshtml" />
-    <None Include="MailViews\de\RecoverPasswordMailModel.cshtml" />
-    <None Include="MailViews\de\UserConfirmMailModel.cshtml" />
+    <None Include="wwwroot\MailViews\de\AdminConfirmMailModel.cshtml" />
+    <None Include="wwwroot\MailViews\de\ErrorMailModel.cshtml" />
+    <None Include="wwwroot\MailViews\de\RecoverPasswordMailModel.cshtml" />
+    <None Include="wwwroot\MailViews\de\UserConfirmMailModel.cshtml" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
