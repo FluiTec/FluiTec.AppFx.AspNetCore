@@ -1,20 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Localization.AspNetCore.TagHelpers" Version="0.5.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
+    <Content Remove="MailViews\de\AccountConfirmedModel.cshtml" />
+    <Content Remove="MailViews\de\AdminConfirmMailModel.cshtml" />
+    <Content Remove="MailViews\de\ErrorMailModel.cshtml" />
+    <Content Remove="MailViews\de\RecoverPasswordMailModel.cshtml" />
+    <Content Remove="MailViews\de\UserConfirmMailModel.cshtml" />
+    <Content Remove="MailViews\en\AccountConfirmedModel.cshtml" />
+    <Content Remove="MailViews\en\AdminConfirmMailModel.cshtml" />
+    <Content Remove="MailViews\en\ErrorMailModel.cshtml" />
+    <Content Remove="MailViews\en\RecoverPasswordMailModel.cshtml" />
+    <Content Remove="MailViews\en\UserConfirmMailModel.cshtml" />
+    <Content Remove="MailViews\Shared\_Style.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="MailViews\de\AccountConfirmedModel.cshtml" />
+    <None Include="MailViews\en\AccountConfirmedModel.cshtml" />
+    <None Include="MailViews\en\AdminConfirmMailModel.cshtml" />
+    <None Include="MailViews\en\ErrorMailModel.cshtml" />
+    <None Include="MailViews\en\RecoverPasswordMailModel.cshtml" />
+    <None Include="MailViews\en\UserConfirmMailModel.cshtml" />
+    <None Include="MailViews\Shared\_Style.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Localization.AspNetCore.TagHelpers" Version="0.6.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FluiTec.AppFx.AspNetCore\FluiTec.AppFx.AspNetCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="MailViews\de\AdminConfirmMailModel.cshtml" />
+    <None Include="MailViews\de\ErrorMailModel.cshtml" />
+    <None Include="MailViews\de\RecoverPasswordMailModel.cshtml" />
+    <None Include="MailViews\de\UserConfirmMailModel.cshtml" />
   </ItemGroup>
 
 </Project>

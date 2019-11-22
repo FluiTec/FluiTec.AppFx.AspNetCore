@@ -6,6 +6,7 @@ using FluiTec.AppFx.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using StaticFileOptions = FluiTec.AppFx.AspNetCore.Configuration.StaticFileOptions;
 
@@ -55,7 +56,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="environment">      The environment. </param>
         /// <returns>   An IApplicationBuilder. </returns>
         public static IApplicationBuilder UseStaticFiles(this IApplicationBuilder app, IConfigurationRoot configuration,
-            IHostingEnvironment environment)
+            IWebHostEnvironment environment)
         {
             if (environment.IsDevelopment())
                 app.UseStaticFiles(new AspNetCore.Builder.StaticFileOptions

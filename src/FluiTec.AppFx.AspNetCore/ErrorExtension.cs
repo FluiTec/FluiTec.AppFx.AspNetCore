@@ -4,6 +4,7 @@ using FluiTec.AppFx.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
@@ -43,7 +44,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="environment">  	The environment. </param>
         /// <returns>	An IApplicationBuilder. </returns>
         public static IApplicationBuilder UseErrorHandling(this IApplicationBuilder app,
-            IHostingEnvironment environment)
+            IWebHostEnvironment environment)
         {
             // if the environment is development - let .NetCore display the exception with full stacktrace
             if (environment.IsDevelopment())

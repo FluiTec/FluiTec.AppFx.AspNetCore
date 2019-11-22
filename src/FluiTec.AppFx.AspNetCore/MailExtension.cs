@@ -28,7 +28,7 @@ namespace FluiTec.AppFx.AspNetCore
         /// <param name="configure">		The configure. </param>
         /// <returns>	An IServiceCollection. </returns>
         public static IServiceCollection ConfigureMailService(this IServiceCollection services,
-            IConfigurationRoot configuration, IHostingEnvironment environment,
+            IConfigurationRoot configuration, IWebHostEnvironment environment,
             Action<MailServiceOptions> configure = null)
         {
             // parse options
@@ -50,7 +50,7 @@ namespace FluiTec.AppFx.AspNetCore
         /// <param name="services">   	The services. </param>
         /// <param name="environment">	The environment. </param>
         /// <param name="root">		  	The root. </param>
-        private static void AddRazorLight(this IServiceCollection services, IHostingEnvironment environment,
+        private static void AddRazorLight(this IServiceCollection services, IWebHostEnvironment environment,
             string root)
         {
             var absoluteRoot = Path.Combine(environment.WebRootPath, root);
@@ -71,7 +71,7 @@ namespace FluiTec.AppFx.AspNetCore
         /// <param name="templateKeyExpander">  The template key expander. </param>
         /// <returns>An IServiceCollection.</returns>
         public static IServiceCollection ConfigureMailServiceLocalized(this IServiceCollection services,
-            IConfigurationRoot configuration, IHostingEnvironment environment,
+            IConfigurationRoot configuration, IWebHostEnvironment environment,
             Func<CultureInfo, string, string> templateKeyExpander,
             Action<MailServiceOptions> configure = null)
         {
@@ -95,7 +95,7 @@ namespace FluiTec.AppFx.AspNetCore
         /// <param name="root">                 The root. </param>
         /// <param name="options">              Options for controlling the operation. </param>
         /// <param name="templateKeyExpander">  The template key expander. </param>
-        private static void AddRazorLightLocalized(this IServiceCollection services, IHostingEnvironment environment,
+        private static void AddRazorLightLocalized(this IServiceCollection services, IWebHostEnvironment environment,
             string root, MailServiceOptions options, Func<CultureInfo, string, string> templateKeyExpander)
         {
             var absoluteRoot = Path.Combine(environment.WebRootPath, root);
@@ -115,7 +115,7 @@ namespace FluiTec.AppFx.AspNetCore
         /// <param name="configure">        (Optional) The configure. </param>
         /// <returns>An IServiceCollection.</returns>
         public static IServiceCollection ConfigureMailServiceTemplated(this IServiceCollection services,
-            IHostingEnvironment environment, IConfigurationRoot configuration,
+            IWebHostEnvironment environment, IConfigurationRoot configuration,
             Action<MailServiceOptions> configure = null)
         {
             // parse options
@@ -137,7 +137,7 @@ namespace FluiTec.AppFx.AspNetCore
         /// <param name="environment">  The environment. </param>
         /// <param name="options">      Options for controlling the operation. </param>
         /// <param name="root">         The root. </param>
-        private static void AddRazorLightTemplating(this IServiceCollection services, IHostingEnvironment environment,
+        private static void AddRazorLightTemplating(this IServiceCollection services, IWebHostEnvironment environment,
             MailServiceOptions options, string root)
         {
             var provider = services.BuildServiceProvider();

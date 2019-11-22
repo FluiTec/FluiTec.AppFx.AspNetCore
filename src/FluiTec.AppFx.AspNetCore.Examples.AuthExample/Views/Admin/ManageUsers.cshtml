@@ -30,10 +30,11 @@
                         <td>
                             @user.Email
                         </td>
-                        @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.UsersUpdate)).Succeeded)
-                        {
-                            <a asp-controller="Admin" asp-action="ManageUser" asp-route-userid="@user.Id">Edit</a>
-                        }
+                        <td>
+                            @if ((await AuthorizationService.AuthorizeAsync(User, PolicyNames.UsersUpdate)).Succeeded)
+                            {
+                                <a asp-controller="Admin" asp-action="ManageUser" asp-route-userid="@user.Id">Edit</a>
+                            }
                         </td>
                     </tr>
                 }

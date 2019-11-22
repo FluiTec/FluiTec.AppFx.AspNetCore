@@ -1,11 +1,9 @@
 ﻿using System;
-using FluiTec.AppFx.AspNetCore.Configuration;
-using FluiTec.AppFx.Options;
-using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace FluiTec.AppFx.AspNetCore.Examples.AuthExample
@@ -26,7 +24,7 @@ namespace FluiTec.AppFx.AspNetCore.Examples.AuthExample
 
         /// <summary>Gets the environment.</summary>
         /// <value>The environment.</value>
-        public IHostingEnvironment Environment { get; }
+        public IWebHostEnvironment Environment { get; }
 
         #endregion
 
@@ -35,7 +33,7 @@ namespace FluiTec.AppFx.AspNetCore.Examples.AuthExample
         /// <summary>Constructor.</summary>
         /// <param name="environment">  . </param>
         /// <remarks>Adds configuration from json-Files and environment-variables.</remarks>
-        public Startup(IHostingEnvironment environment)
+        public Startup(IWebHostEnvironment environment)
         {
             Environment = environment;
 
@@ -80,11 +78,8 @@ namespace FluiTec.AppFx.AspNetCore.Examples.AuthExample
         /// <param name="appLifetime">	  	The application lifetime. </param>
         /// <param name="serviceProvider">	The service provider. </param>
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory,
-            IApplicationLifetime appLifetime, IServiceProvider serviceProvider)
+            IHostApplicationLifetime appLifetime, IServiceProvider serviceProvider)
         {
-            // disable ApplicationInsights
-            app.ApplicationServices.GetService<TelemetryConfiguration>().DisableTelemetry = true;
-
             // run the application
             app.UseLogging(Environment, appLifetime, Configuration, loggerFactory);
             app.UseErrorHandling(Environment);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace FluiTec.AppFx.AspNetCore
 {
@@ -11,7 +12,7 @@ namespace FluiTec.AppFx.AspNetCore
         /// <param name="environment">  	The environment. </param>
         /// <returns>	An IApplicationBuilder. </returns>
         public static IApplicationBuilder UseBrowserLinkExtension(this IApplicationBuilder app,
-            IHostingEnvironment environment)
+            IWebHostEnvironment environment)
         {
             if (environment.IsDevelopment()) app.UseBrowserLink();
 

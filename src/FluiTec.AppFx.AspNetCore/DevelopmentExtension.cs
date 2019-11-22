@@ -17,7 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="environment">  	The environment. </param>
         /// <returns>	An IApplicationBuilder. </returns>
         public static IApplicationBuilder UseDevelopmentExtension(this IApplicationBuilder app,
-            IHostingEnvironment environment)
+            IWebHostEnvironment environment)
         {
             return app.UseBrowserLinkExtension(environment);
         }

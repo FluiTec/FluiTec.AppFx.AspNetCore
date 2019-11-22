@@ -35,7 +35,6 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>	An IServiceCollection. </returns>
         public static IServiceCollection ConfigureMvc(this IServiceCollection services,
             IConfigurationRoot configuration,
-            Action<MvcJsonOptions> configureJson = null,
             Action<LocalizationOptions> configureLocalization = null,
             Action<MvcDataAnnotationsLocalizationOptions> configureDataLocalization = null,
             Action<MvcOptions> configureMvc = null)
@@ -43,11 +42,9 @@ namespace Microsoft.Extensions.DependencyInjection
             _cultureOptions = configuration.GetConfiguration<CultureOptions>();
 
             var mvc = services.AddMvc();
-
-            mvc.AddJsonOptions(options =>
+            mvc.AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-                configureJson?.Invoke(options);
             });
             if (configureLocalization == null)
                 mvc.AddViewLocalization();
