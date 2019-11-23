@@ -20,8 +20,8 @@ namespace FluiTec.AppFx.AspNetCore
             services.ConfigureDataProtectionDataService(configuration);
 
             services.AddScoped<IXmlRepository, DataProtectionKeyRepository>();
-            var built = services.BuildServiceProvider();
-            services.AddDataProtection().AddKeyManagementOptions(options => options.XmlRepository = built.GetService<IXmlRepository>());
+            var serviceProvider = services.BuildServiceProvider();
+            services.AddDataProtection().AddKeyManagementOptions(options => options.XmlRepository = serviceProvider.GetService<IXmlRepository>());
 
             return services;
         }
