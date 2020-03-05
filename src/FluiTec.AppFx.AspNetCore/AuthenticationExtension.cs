@@ -17,10 +17,10 @@ namespace FluiTec.AppFx.AspNetCore
         public static IServiceCollection ConfigureAuthentication(this IServiceCollection services,
             IConfigurationRoot configuration)
         {
-            var options = configuration.GetConfiguration<AuthenticationOptions>();
+            var options = configuration.Configure<AuthenticationOptions>(services);
             services.AddSingleton(options);
 
-            var appOptions = configuration.GetConfiguration<ApplicationOptions>();
+            var appOptions = configuration.Configure<ApplicationOptions>(services);
 
             var auth = services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
             auth.AddCookie(o => o.LoginPath = new PathString(appOptions.ApplicationLoginPath));

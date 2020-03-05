@@ -32,7 +32,7 @@ namespace FluiTec.AppFx.AspNetCore
             Action<MailServiceOptions> configure = null)
         {
             // parse options
-            _options = configuration.GetConfiguration<MailServiceOptions>();
+            _options = configuration.Configure<MailServiceOptions>(services);
 
             // let user apply changes
             configure?.Invoke(_options);
@@ -76,7 +76,7 @@ namespace FluiTec.AppFx.AspNetCore
             Action<MailServiceOptions> configure = null)
         {
             // parse options
-            _options = configuration.GetConfiguration<MailServiceOptions>();
+            _options = configuration.Configure<MailServiceOptions>(services);
 
             // let user apply changes
             configure?.Invoke(_options);
@@ -119,7 +119,7 @@ namespace FluiTec.AppFx.AspNetCore
             Action<MailServiceOptions> configure = null)
         {
             // parse options
-            _options = configuration.GetConfiguration<MailServiceOptions>();
+            _options = configuration.Configure<MailServiceOptions>(services);
 
             // let user apply changes
             configure?.Invoke(_options);

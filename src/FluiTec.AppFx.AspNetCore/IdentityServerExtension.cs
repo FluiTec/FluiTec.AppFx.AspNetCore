@@ -24,15 +24,15 @@ namespace FluiTec.AppFx.AspNetCore
         {
             services.ConfigureIdentityServerDataService(configuration);
 
-            var signingOptions = configuration.GetConfiguration<SigningOptions>();
+            var signingOptions = configuration.Configure<SigningOptions>(services);
             if (signingOptions != null)
                 services.AddSingleton(signingOptions);
 
-            var certificateOptions = configuration.GetConfiguration<CertificateOptions>();
+            var certificateOptions = configuration.Configure<CertificateOptions>(services);
             if (certificateOptions != null)
                 services.AddSingleton(certificateOptions);
 
-            services.AddSingleton(configuration.GetConfiguration<IdentityServerClaimOptions>());
+            services.AddSingleton(configuration.Configure<IdentityServerClaimOptions>(services));
 
             var idSrv = services.AddIdentityServer(options =>
                 {

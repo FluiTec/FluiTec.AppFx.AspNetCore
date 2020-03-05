@@ -38,7 +38,7 @@ namespace Microsoft.Extensions.DependencyInjection
             Action<MvcDataAnnotationsLocalizationOptions> configureDataLocalization = null,
             Action<MvcOptions> configureMvc = null)
         {
-            _cultureOptions = configuration.GetConfiguration<CultureOptions>();
+            _cultureOptions = configuration.Configure<CultureOptions>(services);
 
             var mvc = services.AddMvc(options => options.EnableEndpointRouting = false);
             mvc.AddNewtonsoftJson(options =>

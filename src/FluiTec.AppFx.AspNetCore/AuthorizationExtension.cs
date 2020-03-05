@@ -62,7 +62,7 @@ namespace FluiTec.AppFx.AspNetCore
             var serviceProvider = services.BuildServiceProvider();
             var service = serviceProvider.GetRequiredService<IAuthorizationDataService>();
 
-            var options = configuration.GetConfiguration<ActivityAuthorizationOptions>();
+            var options = configuration.Configure<ActivityAuthorizationOptions>(services);
             var activities = new[]
             {
                 Activities.Access,

@@ -26,7 +26,7 @@ namespace FluiTec.AppFx.AspNetCore
         {
             services.ConfigureIdentityDataService(configuration);
 
-            var adminOptions = configuration.GetConfiguration<AdminOptions>();
+            var adminOptions = configuration.Configure<AdminOptions>(services);
             services.AddSingleton(adminOptions);
 
             // configure aspnet-identity
@@ -58,7 +58,7 @@ namespace FluiTec.AppFx.AspNetCore
         /// <returns>   An IServiceCollection. </returns>
         public static IServiceCollection ConfigureLoginCookieRedirect(this IServiceCollection services, IConfigurationRoot configuration)
         {
-            var apiOptions = configuration.GetConfiguration<ApiOptions>();
+            var apiOptions = configuration.Configure<ApiOptions>(services);
             services.AddSingleton(apiOptions);
 
             services.ConfigureApplicationCookie(cOptions =>

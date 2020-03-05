@@ -35,7 +35,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddLocalization();
 
             // parse options
-            _options = configuration.GetConfiguration<CultureOptions>();
+            _options = configuration.Configure<CultureOptions>(services);
 
             // let user apply changes
             configure?.Invoke(_options);
@@ -56,7 +56,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddDbLocalizationProvider();
 
             // import json-defined localizations
-            var resourceOptions = configuration.GetConfiguration<DbLocalizationResourceOptions>();
+            var resourceOptions = configuration.Configure<DbLocalizationResourceOptions>(services);
             if (resourceOptions == null || !resourceOptions.Resources.Any())
                 return services;
             ImportJsonLocalizations(services, resourceOptions);

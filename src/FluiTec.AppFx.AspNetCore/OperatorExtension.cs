@@ -15,7 +15,7 @@ namespace FluiTec.AppFx.AspNetCore
         public static IServiceCollection ConfigureOperator(this IServiceCollection services,
             IConfigurationRoot configuration)
         {
-            services.AddSingleton(configuration.GetConfiguration<OperatorOptions>());
+            services.AddSingleton(configuration.Configure<OperatorOptions>(services));
             return services;
         }
     }

@@ -33,7 +33,7 @@ namespace Microsoft.Extensions.DependencyInjection
             Action<AspNetCore.Builder.StaticFileOptions> configureFiles = null)
         {
             // parse options
-            _options = configuration.GetConfiguration<StaticFileOptions>();
+            _options = configuration.Configure<StaticFileOptions>(services);
 
             // let user apply changes
             configure?.Invoke(_options);

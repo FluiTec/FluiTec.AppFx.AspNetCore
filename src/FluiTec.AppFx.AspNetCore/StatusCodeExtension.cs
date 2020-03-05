@@ -35,8 +35,8 @@ namespace Microsoft.Extensions.DependencyInjection
             IConfigurationRoot configuration, Action<StatusCodeOptions> configure = null)
         {
             // parse options
-            _options = configuration.GetConfiguration<StatusCodeOptions>();
-            _apiOptions = configuration.GetConfiguration<ApiOptions>();
+            _options = configuration.Configure<StatusCodeOptions>(services);
+            _apiOptions = configuration.Configure<ApiOptions>(services);
 
             // let user apply chjanges
             configure?.Invoke(_options);

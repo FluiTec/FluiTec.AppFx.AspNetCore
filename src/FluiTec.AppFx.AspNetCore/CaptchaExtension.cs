@@ -17,7 +17,7 @@ namespace FluiTec.AppFx.AspNetCore
             IConfigurationRoot configuration)
         {
             // parse config
-            var options = configuration.GetConfiguration<CaptchaOptions>();
+            var options = configuration.Configure<CaptchaOptions>(services);
             services.AddSingleton(options);
 
             // add recaptcha

@@ -29,13 +29,13 @@ namespace Microsoft.Extensions.DependencyInjection
             IConfigurationRoot configuration, Action<ErrorOptions> configure = null)
         {
             // parse options from configuration
-            _options = configuration.GetConfiguration<ErrorOptions>();
+            _options = configuration.Configure<ErrorOptions>(services);
 
             // let the user apply additional changes
             configure?.Invoke(_options);
 
             // add options to the DI
-            services.AddSingleton(configuration.GetConfiguration<ErrorOptions>());
+            services.AddSingleton(configuration.Configure<ErrorOptions>(services));
             return services;
         }
 
