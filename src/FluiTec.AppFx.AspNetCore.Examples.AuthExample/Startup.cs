@@ -80,7 +80,6 @@ namespace FluiTec.AppFx.AspNetCore.Examples.AuthExample
             // run the application
             app.UseLogging(Environment, appLifetime, Configuration, loggerFactory);
             app.UseErrorHandling(Environment);
-            app.UseDevelopmentExtension(Environment);
             app.UseStaticFiles(Configuration, Environment);
             app.UseIdentityServer(Configuration);
             app.UseLocalization(Configuration);
